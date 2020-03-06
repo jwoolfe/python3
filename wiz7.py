@@ -19,6 +19,7 @@ GOLD = 10
 #  reorganize your code. 
 #  apply literate programming (comments)
 #  test out completion algorithm in >>> (IDE)
+#  take 1 ACTION and make it a method of Wizard (such as 'study')
 
 class Wizard:
     def __init__(self, location="forest"):
