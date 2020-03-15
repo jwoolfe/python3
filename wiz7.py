@@ -18,6 +18,7 @@ def main():
             task = input("> ")
             task = task.strip().lower()
             request(wiz, task)
+            save(wiz)
     except (KeyboardInterrupt, EOFError):
         bye()
 
@@ -137,7 +138,6 @@ class Wizard:
             print(f"{self.locations[location]}")
     
     def study(self):
-        print(2)
         if self.location == "tower":
             if self.skill < self.books:
                 self.skill = self.skill + 1
@@ -173,7 +173,50 @@ class Wizard:
     def work(self):
         pass
 
+def save(wiz):
+    data = {
+        "location": wiz.location,
+        "skill": wiz.skill,
+        "gold": wiz.gold,
+        "books": wiz.books,
+        "stress": wiz.stress,
+        "ego": wiz.ego,
+        "potions": wiz.potions,
+        "mushrooms": wiz.mushrooms,
+    }
+    savefile = open("wiz.save", "w")
+    for key in data:
+        savefile.write(f"{key}:{data[key]}\n")
 
+def wiz_help():
+    print(
+        '''\n LOCATIONS: '''
+        '''\n forest ''' 
+        '''\n village ''' 
+        '''\n tower '''
+        '''\n black rock city '''
+        '''\n'''
+        '''\n ACTIONS: '''
+        '''\n brew '''
+        '''\n forage '''
+        '''\n gift'''
+        '''\n gold '''
+        '''\n location '''
+        '''\n purse '''
+        '''\n sell '''
+        '''\n skill level '''
+        '''\n shop '''
+        '''\n study '''
+        '''\n work '''
+
+        '''\n'''
+        '''\n help '''
+        '''\n quit '''
+        '''\n \n Please choose an action or location. ''' )
+
+def bye():
+    print("\nThank you for playing!")
+    sys.exit()
 
 def completion(text, state):
     options = [
@@ -213,35 +256,6 @@ def set_readline():
     else:
         readline.parse_and_bind("tab: complete")
 
-def wiz_help():
-    print(
-        '''\n LOCATIONS: '''
-        '''\n forest ''' 
-        '''\n village ''' 
-        '''\n tower '''
-        '''\n black rock city '''
-        '''\n'''
-        '''\n ACTIONS: '''
-        '''\n brew '''
-        '''\n forage '''
-        '''\n gift'''
-        '''\n gold '''
-        '''\n location '''
-        '''\n purse '''
-        '''\n sell '''
-        '''\n skill level '''
-        '''\n shop '''
-        '''\n study '''
-        '''\n work '''
-
-        '''\n'''
-        '''\n help '''
-        '''\n quit '''
-        '''\n \n Please choose an action or location. ''' )
-
-def bye():
-    print("\nThank you for playing!")
-    sys.exit()
 
 if __name__ == "__main__":
     main()
