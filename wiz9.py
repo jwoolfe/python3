@@ -6,8 +6,6 @@ import os.path
 #  reorganize your code. 
 #  apply literate programming (comments)
 #  test out completion algorithm in >>> (IDE)
-#  take 1 ACTION and make it a method of Wizard (such as 'study')
-
 
 def main():
     set_readline() 
@@ -28,97 +26,49 @@ def request(wiz, task):
     if task in ["quit", "q", "Q"]:
         bye()
     elif task in wiz.locations:
-        wiz.travel(task)       
-    elif task in ["location", "where"]:
-        if wiz.location is None:
-            print('''You are nowhere. Where would you like to go?''')
-        else:
-            print(f"You are at the {wiz.location}.")
-    elif task in ["skill level", "skill", "skills"]:
-        print(f'''You are skill level {wiz.skill}.''' )
-    elif task == "study":
-        print(1)
-        wiz.study()
-    elif task == "relax":
-        if wiz.location == "forest":
-            wiz.stress -= 1
-        else:
-            print(f'''You can't relax in {wiz.location}. ''')
-    elif task == "forage":
-        if wiz.location == "forest":
-            wiz.mushrooms += 1
-            print(f'''You now have {wiz.mushrooms} mushrooms. ''')
-        else:
-            print(f'''There are no mushrooms in the {wiz.location}. ''')
-    elif task == "work":
-        if wiz.location == "village":
-            if wiz.skill > 0:
-                wiz.gold += wiz.skill
-                wiz.stress += 1
-                print(f'''All in a day's work. You now have {wiz.gold} gold.''')
-            else:
-                print(f'''You can't work without any skills.''')
-        else:
-            print(f'''There is no work in the {wiz.location}.''')
-    elif task == "shop":
-        if wiz.location == "village":
-            if wiz.gold == 0:
-                print(f'''You have {wiz.gold} gold. You must work to earn gold.''')
-            else:
-                wiz.gold -= 1
-                wiz.books += 1
-                wiz.stress += 1
-                print(f'''You now have {wiz.books} books and {wiz.gold} gold.''')
-        else:
-            print(f'''You can't shop in the {wiz.location}.''')
-    elif task == "gold":
-        print(f'''You have {wiz.gold} gold.''')
-    elif task == "purse":
-        print(f'''You have {wiz.books} books, {wiz.gold} gold, {wiz.mushrooms} mushrooms & {wiz.potions} potions. ''')
-    elif task == "items":
-        print(f'''             
-            wiz.books: {wiz.books}
-            wiz.gold: {wiz.gold} 
-            wiz.mushrooms: {wiz.mushrooms} 
-            wiz.potions: {wiz.potions}
-            wiz.skill: {wiz.skill}
-            wiz.stress: {wiz.stress} ''')
+        wiz.travel(task)
     elif task == "brew":
-        if wiz.location == "tower":
-            if wiz.mushrooms == 0:
-                print(f'''You can't brew potions without mushrooms. ''')
-            else:
-                wiz.mushrooms -= 1
-                wiz.potions += 1
-                wiz.stress += 1
-                print(f'''You have now have {wiz.potions} potions.''')
-        else:
-            print(f'''You cannot brew potions in the {wiz.location}. ''')
-    elif task == "sell":
-        if wiz.location == "village":
-            if wiz.potions > 0:
-                wiz.gold += wiz.gold
-                print(f'''You now have {wiz.gold} gold.''')
-            else:
-                print(f'''You have no brewed potions to sell.''')
-        else:
-                print(f'''You can't sell goods in the {wiz.location}.''')
+        wiz.brew()
+    elif task == "forage":
+        wiz.forage()
+    elif task == "gift":
+        wiz.gift()
+    elif task == "gold":
+        wiz.purse()
+    elif task == "health":
+        wiz.health()
     elif task in ["help", "h", "?"]:
         wiz_help()
+    elif task in ["location", "where"]:
+        wiz.where()
+    elif task == "purse":
+        wiz.purse()
+    elif task == "relax":
+        wiz.relax()
+    elif task == "sell":
+        wiz.sell()
+    elif task in ["skill level", "skill", "skills"]:
+        wiz.health
+    elif task == "shop":
+        wiz.shop()
+    elif task == "study":
+        wiz.study()
+    elif task == "work":
+        wiz.work()
     else:
         print(f'''I dunno "{task}".''')
 
 class Wizard:
     def __init__(self, location="forest", skill=0, gold=0, books=1, stress=0,
-            ego=0, potions=0, mushrooms=0):
-        self.location = location
-        self.skill = skill
-        self.gold = gold
+            ego=0, potions=0, mushrooms=0, work=0):
         self.books = books
-        self.stress = stress
         self.ego = ego
-        self.potions = potions
+        self.gold = gold
+        self.location = location
         self.mushrooms = mushrooms
+        self.skill = skill
+        self.stress = stress
+        self.potions = potions
 
         self.locations = {
             "forest" : "You travel to the forest where " \
@@ -139,12 +89,11 @@ class Wizard:
             print(f"{self.locations[location]}")
     
     def study(self):
-        print(2)
         if self.location == "tower":
             if self.skill < self.books:
-                self.skill = self.skill + 1
-                self.stress += self.stress
-                self.books -= self.books
+                self.skill += 1
+                self.stress += 1
+                self.books -= 1
                 print(f'''Your skill level is now {self.skill}.''')
             else:
                 print('''You have no more new books to read. ''')
@@ -152,45 +101,115 @@ class Wizard:
             print(f'''You cannot study in the {self.location}.''')
 
     def brew(self):
-        pass
+        if self.location == "tower":
+            if self.mushrooms == 0:
+                    print(f'''You can't brew potions without mushrooms. ''')
+            else:
+                self.mushrooms -= 1
+                self.potions += 1
+                self.stress -= 1
+                print(f'''You have now have {self.potions} potions.''')
+        else:
+                print(f'''You cannot brew potions in the {self.location}. ''')
     
     def forage(self):
-        pass
+        if self.location == "forest":
+            self.mushrooms += 1
+            print(f'''You now have {self.mushrooms} mushrooms. ''')
+        else:
+            print(f'''There are no mushrooms in the {self.location}. ''')
 
     def gift(self):
-        pass
+        if self.location == "black rock city":
+            if self.potions > 0:
+                self.potions -= 1
+                self.stress -= 1
+                print(f'''You now have {self.potions} potions and you have lowered your stress level.''')
+            else:
+                print(f'''You have no potions to gift.''')
+        else:
+            print(f'''You cannot give gifts in the {self.location}.''')
 
     def where(self):
-        pass
+        if self.location is None:
+            print('''You are nowhere. Where would you like to go?''')
+        else:
+            print(f"You are at the {self.location}.")
 
     def purse(self):
-        pass
+        print(f'''   You have {self.books} books''')
+        print(f'''   You have {self.gold} gold''')
+        print(f'''   You have {self.mushrooms} mushrooms''')
+        print(f'''   You have {self.potions} potions''')
 
-    def sell (self):
-        pass
+    def relax(self):
+        if self.location == "forest":
+            self.stress -= 1
+        else:
+            print(f'''You can't relax in {self.location}. ''')
 
-    def shop (self):
-        pass
+    def sell(self):
+        if self.location == "village":
+            if self.potions > 0:
+                self.gold += self.gold
+                print(f'''You now have {self.gold} gold.''')
+            else:
+                print(f'''You have no brewed potions to sell.''')
+        else:
+                print(f'''You can't sell goods in the {self.location}.''')
+
+    def shop(self):
+        if self.location == "village":
+            if self.gold == 0:
+                print(f'''You have {self.gold} gold. You must work to earn gold.''')
+            else:
+                if self.stress >10:
+                    print("You are too stressed out. Go do relaxing things.")
+                else:
+                    self.gold -= 1
+                    self.books += 1
+                    self.stress += 1
+                    print(f'''You now have {self.books} books and {self.gold} gold.''')
+        else:
+            print(f'''You can't shop in the {self.location}.''')
+
+    def health(self):
+        print(f'''   You have a stress level of {self.stress}''')
+        print(f'''   You are at skill level {self.skill}''' )
 
     def work(self):
-        pass
+        if self.location == "village":
+            if self.skill > 0:
+                self.gold += self.skill
+                if self.stress >10:
+                    print("You are too stressed out. Go do relaxing things.")
+                else:
+                    self.stress += 1
+                    print(f'''All in a day's work. You now have {self.gold} gold.''')
+            else:
+                print(f'''You can't work without any skills.''')
+        else:
+            print(f'''There is no work in the {self.location}.''')
 
 def completion(text, state):
     options = [
-        "forest",
-        "village", 
-        "tower",
         "black rock city",
         "brew",
         "forage",
+        "forest",
         "gift",
         "gold",
+        "health",
         "location",
         "purse",
+        "relax",
         "sell",
         "skill level",
         "shop",
         "study",
+        "tower",
+        "travel",
+        "village", 
         "work",
     ]
     matches = []
