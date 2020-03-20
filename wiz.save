@@ -1,8 +1,10 @@
-location:black rock city
-skill:4
-gold:0
-books:3
-stress:1
-ego:0
-potions:1
-mushrooms:1
+[wizard]
+location = village
+skill = 6
+gold = 8
+books = 5
+stress = 9
+ego = 0
+potions = 2
+mushrooms = 0
+

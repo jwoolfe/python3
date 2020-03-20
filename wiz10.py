@@ -12,7 +12,7 @@ import os.path
 def main():
     set_readline() 
     wiz_help()
-    wiz = load()
+    wiz = load('wiz.save')
 
     try:
         while True:
@@ -63,14 +63,14 @@ def request(wiz, task):
 class Wizard:
     def __init__(self, location="forest", skill=0, gold=0, books=1, stress=0,
             ego=0, potions=0, mushrooms=0, work=0):
-        self.books = books
-        self.ego = ego
-        self.gold = gold
+        self.books = int(books)
+        self.ego = int(ego)
+        self.gold = int(gold)
         self.location = location
-        self.mushrooms = mushrooms
-        self.skill = skill
-        self.stress = stress
-        self.potions = potions
+        self.mushrooms = int(mushrooms)
+        self.skill = int(skill)
+        self.stress = int(stress)
+        self.potions = int(potions)
 
         self.locations = {
             "forest" : "You travel to the forest where " \
@@ -246,21 +246,20 @@ def save(wiz):
         "potions": wiz.potions,
         "mushrooms": wiz.mushrooms,
     }
-    savefile = open("wiz.save", "w")
-    for key in data:
-        savefile.write(f"{key}:{data[key]}\n")
 
-def load():
-    data = {}
-    if os.path.isfile("wiz.save"):
-        savefile = open("wiz.save", "r")
-        for line in savefile:
-            key, value = line.strip().split(":")
-            if key != "location":
-                value = int(value)
-            data[key] = value
-    wiz = Wizard(**data)
+    save_file = open("wiz.save", "w")
+    data.write(save_file)
+
+def load(save_file):
+    data = ConfigParser()
+    if os.path.isfile(save_file):
+        data.read(save_file)
+    else:
+        data['wizard'] = {}
+    
+    wiz = Wizard(**data['wizard'])
     return wiz
+
 
 def wiz_help():
     print(
