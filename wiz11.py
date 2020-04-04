@@ -85,7 +85,7 @@ class Wizard:
         if location not in self.locations: 
             msg = f'''{location} is not a place in this land.'''
         elif location == self.location:
-            msg = f'''You are already in {location}.'''
+            msg = f'''You are already in the {location}.'''
         else:
             self.location = location
             msg = f'''{self.locations[location]}'''
@@ -99,7 +99,7 @@ class Wizard:
                 self.books -= 1
                 msg = f'''Your skill level is now {self.skill}.'''
             else:
-                msg = f'''You have no more new books to read. '''
+                msg = f'''You have no more new books to read.'''
         else:
             msg = f'''You cannot study in the {self.location}.'''
         return msg
@@ -107,30 +107,33 @@ class Wizard:
     def brew(self):
         if self.location == "tower":
             if self.mushrooms == 0:
-                msg = f'''You can't brew potions without mushrooms. '''
+                msg = f'''You can't brew potions without mushrooms.'''
             else:
                 self.mushrooms -= 1
                 self.potions += 1
                 self.stress -= 1
-                msg = f'''You have now have {self.potions} potions.'''
+                msg = f'''You now have {self.potions} potions.'''
         else:
-            msg = f'''You cannot brew potions in the {self.location}. '''
+            msg = f'''You cannot brew potions in the {self.location}.'''
         return msg
     
     def forage(self):
         if self.location == "forest":
             self.mushrooms += 1
-            msg = f'''You now have {self.mushrooms} mushrooms. '''
+            msg = f'''You now have {self.mushrooms} mushrooms.'''
         else:
-            msg = f'''There are no mushrooms in the {self.location}. '''
+            msg = f'''There are no mushrooms in the {self.location}.'''
         return msg
 
     def gift(self):
         if self.location == "black rock city":
             if self.potions > 0:
                 self.potions -= 1
-                self.stress -= 1
-                msg = f'''You now have {self.potions} potions and you have lowered your stress level.'''
+                if self.stress > 0:
+                    self.stress -= 1
+                    msg = f'''You now have {self.potions} potions and you have lowered your stress level.'''
+                else:
+                    msg = f'''You now have {self.potions} potions.'''
             else:
                 msg = f'''You have no potions to gift.'''
         else:
@@ -153,15 +156,17 @@ class Wizard:
 
     def relax(self):
         if self.location == "forest":
-            self.stress -= 1
+            if self.stress > 0:
+                self.stress -= 1
+            msg = f'''You now have {self.stress} stress level.'''
         else:
-            msg = f'''You can't relax in {self.location}. '''
+            msg = f'''You can't relax in {self.location}.'''
         return msg
 
     def sell(self):
         if self.location == "village":
             if self.potions > 0:
-                self.gold += self.gold
+                self.gold += 1
                 msg = f'''You now have {self.gold} gold.'''
             else:
                 msg = f'''You have no brewed potions to sell.'''
@@ -186,14 +191,15 @@ class Wizard:
         return msg
 
     def health(self):
-        msg = f'''   You have a stress level of {self.stress}\n'''
-        msg += f'''   You are at skill level {self.skill}''' 
+        msg = f'''   You have a stress level of {self.stress}.\n'''
+        msg += f'''   You have a skill level of {self.skill}.''' 
         return msg
 
     def work(self):
         if self.location == "village":
             if self.skill > 0:
-                self.gold += self.skill
+                self.gold += 1
+                self.skill -= 1
                 if self.stress >10:
                     msg = "You are too stressed out. Go do relaxing things."
                 else:

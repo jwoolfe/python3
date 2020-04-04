@@ -12,8 +12,8 @@ def main():
         bye()
 
 def bye():
-    print("\nGoodbye")
-    sys.exit()
+   # print(EOFError)
+    sys.exit(EOFError)
 
 if __name__ == "__main__":
     main()

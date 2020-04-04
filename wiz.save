@@ -1,10 +1,10 @@
 [wizard]
-location = black rock city
-skill = 6
-gold = 6
-books = 7
-stress = 10
+location = forest
+skill = 0
+gold = 0
+books = 1
+stress = 0
 ego = 0
-potions = 1
-mushrooms = 6
+potions = 0
+mushrooms = 0
 

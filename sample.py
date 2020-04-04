@@ -2,7 +2,7 @@
 
 def main():
     while True:
-        msg = input("What should I say? ")
+        msg = input("What should I do? ")
         if msg == "quit":
             break
         print(msg)
