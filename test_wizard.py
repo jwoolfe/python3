@@ -106,6 +106,9 @@ class WizTest(unittest.TestCase):
             wiz11.request(wiz, "brew"),
             "You now have 2 potions."
         )
+        self.assertEqual(wiz.mushrooms, 2)
+        self.assertEqual(wiz.potions, 2)
+        self.assertEqual(wiz.stress, -1)
 
     def test_forage_in_forest(self):
         wiz = wiz11.Wizard(location="forest")
