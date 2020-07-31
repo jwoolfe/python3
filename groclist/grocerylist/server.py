@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sanic
+import csv
 
 server = sanic.Sanic("GrocList")
 server.static("/favicon.ico", "./favicon.ico")
@@ -13,7 +14,7 @@ HEAD = ''' <!DOCTYPE html>
             </head>
             <body> '''
 
-FORM = ''' <form action="/groclist" method="get">
+FORM = ''' <form action="/groclist" method="post">
               <label for="add">Item to Add</label>
               <input type="text" id="add" name="add">
               <input type="submit" value="Submit">
@@ -22,7 +23,7 @@ FORM = ''' <form action="/groclist" method="get">
 TAIL = ''' </body>
             </html> '''
 
-@server.route("/")
+@server.route("/", methods=['POST', 'GET'])
 async def index(request):
     url = request.url
     args = request.args
@@ -38,11 +39,18 @@ async def index(request):
     return sanic.response.html(msg)
 
 
-@server.route("/groclist")
+@server.route("/groclist", methods=['POST', 'GET'])
 async def groclist(request):
     items = load()
 
     args = request.args
+    form = request.form
+    for key in form:
+        if key in args:
+            args[key] += form[key]
+        else:
+            args[key] = form[key]
+
     if "add" in args:
         values = args["add"]
         for value in values:
@@ -62,7 +70,13 @@ async def groclist(request):
     msg = HEAD + FORM
     msg += ''' <ul> '''
     for item in items:
-        msg += f"<li>{item}</li>"
+        # msg += f"<li>{item}</li>"
+
+        msg += f'''<li> {item} <form action="/groclist" method="post" style="display: inline">
+            <input type ="hidden" id="del" name="del" value="{item}"> 
+            <input type="submit" value="❌">
+            </form> </li>'''
+
     msg += ''' </ul> '''
     msg += TAIL
 
@@ -75,6 +89,11 @@ def save(items):
     the_file.write(plain_text)
     the_file.close()
 
+def savecsv(items):
+    db = open("./items.csv", "w")
+    writer = csv.writer(db)
+    writer.writerows(items)
+    db.close()
 
 def load():
     the_file = open("./items.list", "r")
