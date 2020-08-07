@@ -1,0 +1,65 @@
+body {
+  padding: 1.2em;
+}
+
+form#formadder {
+  float: left;
+  padding: 1.2em;
+
+  font-size: 1em;
+
+  margin: 0em;
+  margin-bottom: 0.25em;
+  border: none;
+  /* border-top: 1px solid #CCCCCC; */
+  box-shadow: 2px 2px 3px black;
+}
+
+  form#formadder > #submit_add {
+    display: block;
+    margin: 0em;
+    margin-top: 1em;
+    width: 100%;
+
+    font-size: 1em;
+  }
+
+ul {
+  float: left;
+
+  padding: 0em;
+  margin: 0em;
+  margin-left: 1em;
+  width: 16em;
+  border: none;
+  text-align: left;
+  list-style-type: none;
+
+  /* border: 1px solid #CCCCCC; */
+}
+
+li {
+  font-size: 1em;
+
+  padding: 0.25em;
+
+  margin: 0em;
+  margin-bottom: 0.25em;
+  border: none;
+  /* border-top: 1px solid #CCCCCC; */
+  box-shadow: 2px 2px 3px black;
+}
+
+li:first-child {
+  border-top: none;
+}
+
+.button {
+  float: right;
+  text-decoration: none;
+
+  border-radius: 1em;
+  color: red;
+  text-shadow: 0px 0px 2px black;
+  background-color: rgba(0, 0, 0, 0.2);
+}

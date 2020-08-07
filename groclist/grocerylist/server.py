@@ -5,23 +5,25 @@ import csv
 
 server = sanic.Sanic("GrocList")
 server.static("/favicon.ico", "./favicon.ico")
+server.static("/main.css", "./main.css")
 
 HEAD = ''' <!DOCTYPE html>
             <html>
             <head>
                 <title> Groc List </title>
                 <link rel="icon" type="image/png" href="/favicon.ico">
+                <link rel="stylesheet" type="text/css" href="/main.css">
             </head>
-            <body> '''
+            <body>\n'''
 
-FORM = ''' <form action="/groclist" method="post">
+FORM = ''' <form id="formadder" action="/groclist" method="post">
               <label for="add">Item to Add</label>
               <input type="text" id="add" name="add">
-              <input type="submit" value="Submit">
-            </form>'''
+              <input id="submit_add" class="button" type="submit" value="+">
+            </form>\n'''
 
 TAIL = ''' </body>
-            </html> '''
+            </html>'''
 
 @server.route("/", methods=['POST', 'GET'])
 async def index(request):
@@ -68,16 +70,16 @@ async def groclist(request):
     save(items)
 
     msg = HEAD + FORM
-    msg += ''' <ul> '''
+    msg += ''' <ul>\n'''
     for item in items:
         # msg += f"<li>{item}</li>"
 
         msg += f'''<li> {item} <form action="/groclist" method="post" style="display: inline">
             <input type ="hidden" id="del" name="del" value="{item}"> 
-            <input type="submit" value="❌">
-            </form> </li>'''
+            <input class="button" type="submit" value="❌">
+            </form> </li>\n'''
 
-    msg += ''' </ul> '''
+    msg += ''' </ul>\n'''
     msg += TAIL
 
     return sanic.response.html(msg)
