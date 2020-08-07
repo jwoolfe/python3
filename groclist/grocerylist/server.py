@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# NEXT STEPS :  make it use list.csv!
+
 import sanic
 import csv
 
@@ -71,7 +73,7 @@ async def groclist(request):
 
     msg = HEAD + FORM
     msg += ''' <ul>\n'''
-    for item in items:
+    for item in sorted(items):
         # msg += f"<li>{item}</li>"
 
         msg += f'''<li> {item} <form action="/groclist" method="post" style="display: inline">
@@ -103,6 +105,12 @@ def load():
     items = plain_text.split("\n")
     return items
 
+def loadcsv():
+    db = open("./items.csv", "r")
+    reader = csv.reader(db)
+    items = list(reader)
+    db.close()
+    return items
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=8003)
