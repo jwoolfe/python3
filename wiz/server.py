@@ -5,8 +5,8 @@ import csv
 import game
 
 server = sanic.Sanic("Wizard Pie")
-server.static("/favicon.svg", "./favicon.svg")
-server.static("/main.css", "./main.css")
+server.static("/favicon.svg", "/srv/favicon.svg")
+server.static("/main.css", "/srv/main.css")
 
 HEAD = ''' <!DOCTYPE html>
             <html>
