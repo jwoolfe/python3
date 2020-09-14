@@ -48,7 +48,7 @@ def request(wiz, task):
     elif task == "sell":
         return wiz.sell()
     elif task in ["skill level", "skill", "skills"]:
-        return wiz.health
+        return wiz.health()
     elif task == "shop":
         return wiz.shop()
     elif task == "study":
