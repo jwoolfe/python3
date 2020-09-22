@@ -34,13 +34,15 @@ def request(wiz, task):
     elif task == "gift":
         return wiz.gift()
     elif task == "gold":
-        return wiz.purse()
+        return wiz.goldpieces()
     elif task == "health":
         return wiz.health()
     elif task in ["help", "h", "?"]:
         return wiz_help()
     elif task in ["location", "where"]:
         return wiz.where()
+    elif task in ["play"]:
+        return wiz.play()
     elif task == "purse":
         return wiz.purse()
     elif task == "relax":
@@ -128,8 +130,8 @@ class Wizard:
             if self.potions > 0:
                 self.potions -= 1
                 if self.stress > 0:
-                    self.stress -= 1
-                    msg = f'''You now have {self.potions} potions and you have lowered your stress level.'''
+                    self.stress -= 2
+                    msg = f'''You now have {self.potions} potions and you have lowered your stress level by 2.'''
                 else:
                     msg = f'''You now have {self.potions} potions.'''
             else:
@@ -138,11 +140,24 @@ class Wizard:
             msg = f'''You cannot give gifts in the {self.location}.'''
         return msg
 
+    def goldpieces(self):
+        msg = f'''You have {self.gold} gold pieces\n'''
+        return msg
+
     def where(self):
         if self.location is None:
             msg = f'''You are nowhere. Where would you like to go?'''
         else:
             msg = f'''You are at the {self.location}.'''
+        return msg
+
+    def play(self):
+        if self.location == "black rock city":
+            if self.stress > 0:
+                self.stress -= 1
+            msg = f'''Yay! Play! You now have {self.stress} stress level.'''
+        else:
+            msg = f'''You can't play in {self.location}.'''
         return msg
 
     def purse(self):
@@ -219,6 +234,7 @@ def completion(text, state):
         "gold",
         "health",
         "location",
+        "play",
         "purse",
         "relax",
         "sell",
@@ -289,7 +305,9 @@ def wiz_help():
     msg += '''\n gift'''
     msg += '''\n gold '''
     msg += '''\n location '''
+    msg += '''\n play '''
     msg += '''\n purse '''
+    msg += '''\n relax '''
     msg += '''\n sell '''
     msg += '''\n skill level '''
     msg += '''\n shop '''

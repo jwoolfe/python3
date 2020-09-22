@@ -18,7 +18,7 @@ HEAD = ''' <!DOCTYPE html>
             <body>\n'''
 
 FORM = ''' <form id="wizard" action="/" method="post">
-              <label for="task">What should I do?</label>
+              <label for="task">What would you like to do?</label>
               <input type="text" id="task" name="task">
               <input id="submit_action" class="button" type="submit" value="+">
             </form>\n'''
