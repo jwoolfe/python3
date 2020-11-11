@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from datetime import date
+
 items = [4, 3, 2, 1, 22, 7]
 
 # sum all items in a list
@@ -115,3 +117,46 @@ print(sys.version_info)
 
 print('\n')
 print('\n')
+
+
+def div42by(divideBy):
+   try:
+      return 42 / divideBy
+   except ZeroDivisionError:
+      print('Error: You tried to divide by zero')
+
+# error handling
+print(div42by(0))
+print(div42by(1))
+
+print('\n')
+print('\n')
+
+
+## error handling input
+#numCats = input('How many cats do you have? ')
+#try:
+#   if int(numCats) >= 4:
+#      print('That is a lot of cats')
+#   else:
+#      print('That is not that many cats')
+#except ValueError:
+#   print('You did not enter a number')
+#print('\n\n')
+
+## looking at lists with range
+supplies = ['pens', 'staplers', 'binders', 'flask']
+def indexes(listinput):
+   for i in range(len(listinput)):
+      print('Index ' + str(i) + ' in  listinput: ' + listinput[i])
+
+indexes(supplies)
+
+print('\n\n')
+
+birth_year = input('What year were you born? ')
+age = date.today().year - int(birth_year)
+
+print(f'You are {age} years old')
+
+print('\n\n')
