@@ -154,9 +154,29 @@ indexes(supplies)
 
 print('\n\n')
 
-birth_year = input('What year were you born? ')
-age = date.today().year - int(birth_year)
-
-print(f'You are {age} years old')
+## inputs
+#name = input('What is your name? ')
+#birth_year = input('What year were you born? ')
+#password = input('Please type in a password. ')
+#
+# calculations
+#age = date.today().year - int(birth_year)
+#hidden_pass = '*' * len(password)
+#
+## outputs
+#print(f'{name}, you are {age} years old')
+#print(f'Your password {hidden_pass} is {len(password)} letters long.')
 
 print('\n\n')
+
+# More Lists
+
+
+
+
+
+print('\n\n')
+
+
+
+
