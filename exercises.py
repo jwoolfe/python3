@@ -2,9 +2,10 @@
 
 from datetime import date
 
+
+print('\n** Sum all items in a list \n')
 items = [4, 3, 2, 1, 22, 7]
 
-# sum all items in a list
 def sum_list(items):
     total = 0
     for i in items:
@@ -52,8 +53,7 @@ print('Largest number is: ', return_largest(numbers))
 print('Smallest number is: ', return_smallest(numbers))
 
 
-print('\n')
-# Function that calculates the collatz sequence
+print('\n\n** Function that calculates the collatz sequence ')
 print('Collatz sequence : ')
 def collatz(num):
     num = int(num)
@@ -94,9 +94,7 @@ final = sorted(sample, key=second_element)
 print(final)
 
 
-# print twinkel twinkle little star.
-print('\n')
-print('\n')
+print('\n** Print twinkel twinkle little star.')
 msg = 'Twinkle, twinkle, little star, \n'
 msg += '\t How I wonder what you are! \n'
 msg += '\t\t Up above the world so high, \n '
@@ -105,10 +103,7 @@ msg += 'Twinkle, twinkle, little star,\n'
 msg += '\t How I wonder what you are\n'
 print(msg)
 
-print('\n')
-print('\n')
-
-# print python version
+print('\n** Print python version ')
 import sys
 print("Python Version")
 print (sys.version)
@@ -125,12 +120,9 @@ def div42by(divideBy):
    except ZeroDivisionError:
       print('Error: You tried to divide by zero')
 
-# error handling
+print('\n** Error handling ')
 print(div42by(0))
 print(div42by(1))
-
-print('\n')
-print('\n')
 
 
 ## error handling input
@@ -144,15 +136,13 @@ print('\n')
 #   print('You did not enter a number')
 #print('\n\n')
 
-## looking at lists with range
+print('\n** Looking at lists with range ')
 supplies = ['pens', 'staplers', 'binders', 'flask']
 def indexes(listinput):
    for i in range(len(listinput)):
       print('Index ' + str(i) + ' in  listinput: ' + listinput[i])
 
 indexes(supplies)
-
-print('\n\n')
 
 ## inputs
 #name = input('What is your name? ')
@@ -165,18 +155,45 @@ print('\n\n')
 #
 ## outputs
 #print(f'{name}, you are {age} years old')
-#print(f'Your password {hidden_pass} is {len(password)} letters long.')
+#print(f'Your password {hidden_pass} is {len(password)} letters long.')#
+# print('\n\n')
 
-print('\n\n')
+print('\n** More List Methods with a fruit basket')
 
-# More Lists
+basket = ['Bananas', 'Apples', 'Oranges', 'Blueberries']
 
+#1. remove Bananas
+basket.remove('Bananas')
 
+#2. Remove Blueberries
+basket.pop()
 
+#3. Add 'Kiwi' to the end
+basket.append('Kiwi')
 
+#4. Add Apples at the beginning
+basket.insert(0, 'Apples')
 
-print('\n\n')
+#5. Count how many Apples in the basket
+apple_count = basket.count('Apples')
+print(f'There are {apple_count} apples in the basket.')
 
+#6. Empty the basket
+basket.clear()
 
+print('\n** Sorted list of friends')
+friends = ['Simon', 'Patty', 'Joy', 'Carrie', 'Amira', 'Chu']
+new_friend = ['Stanley']
 
+friends.extend(new_friend)
+print(sorted(friends))
 
+print('\n\n** List unpacking ')
+a,b,c, *other, d = [1,2,3,4,5,6,7,8,9]
+
+print(a)
+print(b)
+print(other[3])
+print(d)
+
+print('\n\n** Dictionaries ')
