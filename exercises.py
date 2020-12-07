@@ -179,7 +179,7 @@ apple_count = basket.count('Apples')
 print(f'There are {apple_count} apples in the basket.')
 
 #6. Empty the basket
-basket.clear()
+#basket.clear()
 
 print('\n** Sorted list of friends')
 friends = ['Simon', 'Patty', 'Joy', 'Carrie', 'Amira', 'Chu']
@@ -197,3 +197,31 @@ print(other[3])
 print(d)
 
 print('\n\n** Dictionaries ')
+
+# dictionary for users in game
+
+user1 = {
+    'username': 'Bono',
+    'age': 20,
+    'weapons': ['sword'],
+    'is_active': True,
+    'clan': 'Lumsden'
+}
+
+user1['weapons'].append('knife')
+user1.update({'is_banned': True})
+
+user2 = user1.copy()
+user2.update({'username': 'Dono', 'age': 25})
+
+print(user1)
+print(user2.values())
+
+
+print('\n\n** Sets ')
+# unordererd collection of unique objects
+
+school = {'Bobby', 'Tammy', 'Jammy', 'Sally', 'Danny'}
+attendance_list = ['Bobby', 'Jammy', 'Sally', 'Danny']
+
+print(f'{school.difference(attendance_list)} skipped class today.')
