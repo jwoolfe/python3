@@ -225,3 +225,43 @@ school = {'Bobby', 'Tammy', 'Jammy', 'Sally', 'Danny'}
 attendance_list = ['Bobby', 'Jammy', 'Sally', 'Danny']
 
 print(f'{school.difference(attendance_list)} skipped class today.')
+
+print('\n\n** Ternary Operator (Conditional Expression)')
+
+# condition_if_true if condition else condition_if_false
+is_friend = True
+can_message = 'message allowed' if is_friend else 'not allowed to message'
+
+print(can_message)
+
+print('\n\n** Short Circuiting')
+is_Friend = True
+is_User = True
+
+if is_Friend or is_User:
+    print('BFFs! ')
+
+print('\n\n** Logical Operators')
+
+is_magician = False
+is_expert = False
+
+# check if magician AND expert
+if is_magician and is_expert:
+    print('You are a master magician')
+
+# check if magician but not expert
+elif is_magician and not is_expert:
+    print('Your journey has begun')
+
+# check if you're not a magician
+elif not is_magician:
+    print('Seek the powers of magic')
+
+
+
+
+
+
+
+print('\n\n** ')  # end

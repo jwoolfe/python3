@@ -1,28 +1,41 @@
 #!/usr/bin/env python3
 
 ###########################
-## Create a deck of cards
-## choose a random cards
-## hint: import random
+## dictionary for users 
+## dictionary keys = usernames
+## dict value = hand
+##
+##
+## shuffle deck
+## pop 5 cards for each player 
+## print out what hands are
+## extra credit: implement first unique character in a word (from memory)
 ##########################
 
 import random
 from collections import namedtuple
 
-deck = {}
+Card = namedtuple('Card', ['suit', 'value'])
+
 suits = ['Diamonds', 'Hearts', 'Spades', 'Clubs']
 face_cards = ['Jack', 'Queen', 'King', 'Ace']
-cards = list(range(2, 11))
-cards.extend(face_cards)
+values = list(range(2, 11))
+values.extend(face_cards)
+
+new_deck = []
 
 for suit in suits:
-    deck[suit] = cards
+    for value in values:
+        card = Card(suit, value)
+        new_deck.append(card)
+
+random.shuffle(new_deck)
+pick = new_deck.pop()
 
 
-suit_pick = random.choice(suits)
-value_pick = random.choice(cards) 
+#print(f'You picked {pick[1]} of {pick[0]}')
+print(f'{pick.value} of {pick.suit}')
 
-print(f'{value_pick} of {suit_pick}')
 
 
 
