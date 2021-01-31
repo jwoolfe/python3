@@ -259,9 +259,51 @@ elif not is_magician:
     print('Seek the powers of magic')
 
 
+print('\n\n** Loop through dictionaries ')
 
+# iterable - list, dictionary, tuple, set, string
+# any collection of items can be iterated
+# iterate - one by one, check each item in the collection
+# for item in <data structure>:
 
+# for dictionaries, the keys will be iterated
+user = {
+    'name': 'Golem',
+    'age': 5006,
+    'can_swim': False
+}
 
+# methods for iterating dictionaries
+for item in user.items():
+    print(item)
 
+for item in user.values():
+    print(item)
+
+for item in user.keys():
+    print(item)
+
+for key, value in user.items():
+    print(key, value)
+
+print('\n\n** Loop through list ')
+my_list = [1,2,3,4,5,6,7,8,9,10]
+
+total = 0
+for num in my_list:
+    total = total + num
+print(total)
+
+print('\n** Loop Tools ')
+# common looping tools -- range, enumerate
+for number in range(0, 30, 3):  # step over 3 or use -1 for reverse
+        print(number)
+
+for i,char in enumerate('abc'):       # give us an index for each item
+    print(i, char)
+
+for i,char in enumerate(list(range(100))):
+    if char == 50:
+        print(i)
 
 print('\n\n** ')  # end
