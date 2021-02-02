@@ -27,6 +27,14 @@ class WizTest(unittest.TestCase):
             wiz11.request(wiz, "tower"),
             "You are already in the tower."
         )
+    
+    def test_travel_tower_facts(self):
+        wiz = wiz11.Wizard(location='village')
+        wiz11.request(wiz, 'tower')
+        self.assertEqual(
+            wiz.location, 
+            'tower'
+        )
 
     def test_travel_village(self):
         wiz = wiz11.Wizard(location="tower")
@@ -55,6 +63,28 @@ class WizTest(unittest.TestCase):
             wiz11.request(wiz, "black rock city"),
             "You are already in the black rock city."
         )
+
+    def test_travel_river(self):
+        wiz = wiz11.Wizard(location="village")
+        self.assertEqual(
+            wiz11.request(wiz, "river"),
+            "You travel to the river where you can have a swim."
+        )
+
+    def test_travel_river_already_there(self):
+        wiz = wiz11.Wizard(location="river")
+        self.assertEqual(
+            wiz11.request(wiz, "river"),
+            "You are already in the river."
+        )
+    
+    def test_travel_river_facts(self):
+        wiz = wiz11.Wizard(location='village')
+        wiz11.request(wiz, 'river')
+        self.assertEqual(
+            wiz.location, 
+            'river'
+        )    
 
     def test_study_in_tower(self):
         wiz = wiz11.Wizard(location="tower")

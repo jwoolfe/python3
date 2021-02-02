@@ -79,6 +79,7 @@ class Wizard:
             "village" : "You travel to your village where " \
                 "you can work, sell goods and shop.",
             "black rock city" : "You travel to the playa )'(.",
+            "river" : "You travel to the river where you can have a swim.",
             }
 
     def travel(self, location):
@@ -223,6 +224,7 @@ def completion(text, state):
         "location",
         "purse",
         "relax",
+        "river",
         "sell",
         "skill level",
         "shop",
@@ -284,6 +286,7 @@ def wiz_help():
     msg += '''\n village ''' 
     msg += '''\n tower '''
     msg += '''\n black rock city '''
+    msg += '''\n river '''
     msg += '''\n'''
     msg += '''\n ACTIONS: '''
     msg += '''\n brew '''
