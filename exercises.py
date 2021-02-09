@@ -306,4 +306,74 @@ for i,char in enumerate(list(range(100))):
     if char == 50:
         print(i)
 
-print('\n\n** ')  # end
+
+print('\n** While Loops, break, continue, pass ')
+
+# To jump out of a while loop:
+    # turn condition False (ex: with a counter or else)
+    # break
+
+
+# Python3 code to iterate over a list
+list = [1, 2, 3, 4, 5]
+
+# Iterating using the for loop
+print('Iterating using for loop ')
+newlist = []
+for i in list:
+    newlist.append(i)
+print(newlist)
+  
+# Getting length of list
+length = len(list)
+i = 0
+
+# Iterating using while loop
+print('Iterating using while loop ')
+
+while i < length:
+    print(list[i])
+    i += 1
+
+
+
+# Very useful to use with input()
+#While True:
+#    response = input('say something: ')
+#    if (response = 'bye'):
+#        break
+
+print('\n** Exercise: Make your first GUI')
+
+picture = [
+ [0,0,0,1,0,0,0],
+ [0,0,1,1,1,0,0],
+ [0,1,1,1,1,1,0],
+ [1,1,1,1,1,1,1],
+ [0,0,0,1,0,0,0],
+ [0,0,0,1,0,0,0],
+]
+
+
+graphic = []
+
+for line in picture:
+    graphicline = []
+    for item in line:
+        if item == 0:
+            graphicline.append(' ')
+        else:
+            graphicline.append('*')
+    graphic.append(graphicline)
+
+for line in graphic:
+   print(line)
+
+
+
+
+
+
+
+
+print('\n\n**** ')  # end
