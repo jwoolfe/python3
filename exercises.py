@@ -355,6 +355,7 @@ picture = [
 ]
 
 
+# way #1
 graphic = []
 
 for line in picture:
@@ -366,14 +367,41 @@ for line in picture:
             graphicline.append('*')
     graphic.append(graphicline)
 
-for line in graphic:
-   print(line)
+# oops forgot the print part
+
+# way #2
+for row in picture:
+    for pixel in row:
+        if (pixel ==1):
+            print('*', end='')
+        else:
+            print(' ', end='')
+    print('')
 
 
+print('\n** Exercise: Check for duplicates in a list')
 
+some_list = ['a', 'b', 'c', 'b', 'd', 'm', 'n', 'n']
+#count_dict = dict.fromkeys(some_list, 1)
+some_dict = {}
 
+# for each item in some_list, check if in count_dict
+# if item exists as key, value=+1
 
+for key in some_list:
+    if key in some_dict.keys():
+       # print(f' Element {key} exists in dict')
+        some_dict[key] += 1
+    else:
+       # print(f' Adding {key} to dict')
+        some_dict[key] = 1
 
+dups = []
+for key, value in some_dict.items():
+    if value > 1:
+        dups.append(key)
 
+print('Duplicates are: ', end = '')
+print(dups) 
 
 print('\n\n**** ')  # end
