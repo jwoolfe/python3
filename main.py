@@ -401,7 +401,27 @@ for key, value in some_dict.items():
     if value > 1:
         dups.append(key)
 
-print('Duplicates are: ', end = '')
+print('Way of the Jen: ', end = '')
 print(dups) 
+
+# way #2
+some_list = ['a', 'b', 'c', 'b', 'd', 'm', 'n', 'n']
+
+duplicates = []
+for value in some_list:
+    if some_list.count(value) > 1:
+        if value not in duplicates:
+            duplicates.append(value)
+
+print(f'Way of the python warrior: {duplicates}')
+
+
+print('\n** Exercise: ')
+
+
+
+
+
+
 
 print('\n\n**** ')  # end
