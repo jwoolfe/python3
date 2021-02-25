@@ -416,7 +416,88 @@ for value in some_list:
 print(f'Way of the python warrior: {duplicates}')
 
 
-print('\n** Exercise: ')
+print('\n** Exercise: Make some functions')
+
+def checkDriverAge(age=0):
+    '''
+    Takes an age argument and checks to see if you can drive yet.
+    '''
+
+    if int(age) < 18:
+        print("Sorry, you are too young to drive this car. Powering off")
+    elif int(age) > 18:
+        print("Powering On. Enjoy the ride!")
+    elif int(age) == 18:
+        print("Congratulations on your first year of driving. Enjoy the ride!")
+
+checkDriverAge()
+#help(checkDriverAge)           # print the docstring
+
+print('\n** *args and **kwargs')
+
+def super_func(*args, **kwargs):
+    #print(*args)
+    total = 0
+    for items in kwargs.values():
+        total += items
+    return sum(args) + total
+
+print(super_func(1,2,3,4,5, num1=5, num2=10))
+
+print('\n** Exercise:  Print the highest even number')
+
+def highest_even(li):
+    evens = []
+    for item in li:
+        if item % 2 == 0:
+            evens.append(item)
+    return max(evens)
+
+print(highest_even([10,2,3,4,6,7,8,11]))
+
+
+#print('\n** walrus operator')
+#inputs = list()
+#while (current := input("Write something: ")) != "quit":
+#    inputs.append(current)
+
+
+print('\n** scope')
+a = 1
+
+def confusion():
+    a = 5
+    return a
+
+print(confusion())
+print(a)
+
+
+def outer():
+    x = "local"
+    def inner():
+        nonlocal x
+        x = "nonlocal"
+        print("inner:", x)
+
+    inner()
+    print("outer:", x)
+
+outer()
+
+
+print('\n**  ')
+
+
+
+
+
+
+
+
+
+
+
 
 
 
