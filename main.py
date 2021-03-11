@@ -489,14 +489,63 @@ outer()
 print('\n**  ')
 
 
+def newthing():
+    pass
+print('what')
 
 
 
+print('\n** OOP : Classes')
+
+class PlayerCharacter:
+    # Class Object Attribute
+    membership = True
+    def __init__(self, name, age):
+        if (self.membership):
+            self.name = name
+            self.age = age
+    
+    def introduce(self):
+        print(f'My name is {self.name}')
+        # returns None because nothing is returned
+
+
+player1 = PlayerCharacter('Dragon', 40)
+player2 = PlayerCharacter('Bear', 25)
+player2.attack = 50
+
+print(player1.name)
+print(player2.age)
+print(player2.introduce())
+print(player2.attack)
 
 
 
+print('\n** Exercise : Cats Everywhere')
+
+# Given the below class:
+class Cat:
+    species = 'mammal'
+    def __init__(self, name, age):
+            self.name = name
+            self.age = age
 
 
+# 1 Instantiate the Cat object with 3 cats
+cat1 = Cat('Willow', 107)
+cat2 = Cat('Lenny', 24)
+cat3 = Cat('Murray', 37)
+
+# Create a function that finds the oldest cat
+def oldest(*argv):
+        old = max(*argv)
+        return old
+
+fuck = oldest(cat1.age, cat2.age, cat3.age)
+print(f'The oldest cat is {fuck} years old.')
+
+# Print out: "The oldest cat is x years old.". 
+# x will be the oldest cat age by using the function in #2
 
 
 
