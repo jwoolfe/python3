@@ -547,11 +547,19 @@ print(f'The oldest cat is {fuck} years old.')
 # Print out: "The oldest cat is x years old.". 
 # x will be the oldest cat age by using the function in #2
 
+print('\n** OOP : 4 Pillars')
+# Encapsulation
+# Abstraction
+# Inheritance
+# Polymorphism
+
+
+print('\n** Exercise : Pets Everywhere')
+# Exercise from this URL
+# https://repl.it/@aneagoie/inheritance-exercise
 
 
 
 
 
-
-
-print('\n\n**** ')  # end
+print('\n\n**** ')  # end 
